@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { MessageType } from "../types/MessageType";
 
 const hardCodedPropmts: string[] = [
@@ -61,6 +61,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
   };
 
   const mockPostAPI = async (prompt: string) => {
+    console.log("sending this prompy to the backend:", prompt);
     const newMessage: MessageType = {
       role: "assistant",
       text: "Here is an answer to that question: because of science",

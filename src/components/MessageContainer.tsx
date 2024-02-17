@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 export const MessageContainer = () => {
   const { messages } = usePromptContext();
 
-  const endOfMessagesRef = useRef(null);
+  const endOfMessagesRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // Scroll the dummy div into view whenever messages change
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
