@@ -1,32 +1,24 @@
-import { useEffect, useState } from "react";
 import { Message } from "./Message";
+import { usePromptContext } from "../contexts/PromptContext";
 import { MessageType } from "../types/MessageType";
-
-const hardCodedPropmts: string[] = [
-  "I have a question",
-  "I want to know more about skincare",
-  "I have a complaint",
-  "I have a question for my doctor",
-];
-const testMessages = [
-  {
-    role: "assistant",
-    text: "Hi there! I am a helpful chatbot. Can I get you started down the right path?",
-    selectablePrompts: hardCodedPropmts,
-  },
-  { role: "user", text: "hello" },
-] as MessageType[];
+import { useEffect, useRef } from "react";
 
 export const MessageContainer = () => {
-  const [messages, setMessages] = useState<MessageType[]>([]);
+  const { messages } = usePromptContext();
+
+  const endOfMessagesRef = useRef(null);
   useEffect(() => {
-    setMessages(testMessages);
-  }, []);
+    // Scroll the dummy div into view whenever messages change
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  if (!messages) return "loading...";
   return (
-    <div className="flex flex-1 flex-col bg-slate-200">
-      {messages.map((message, i) => {
+    <div className="flex flex-1 flex-col overflow-y-scroll bg-slate-200">
+      {messages.map((message: MessageType, i: number) => {
         return <Message message={message} key={`message-${i}`} />;
       })}
+      <div ref={endOfMessagesRef} />
     </div>
   );
 };

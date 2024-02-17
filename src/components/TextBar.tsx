@@ -2,8 +2,12 @@ import { usePromptContext } from "../contexts/PromptContext";
 
 export const TextBar = () => {
   const { prompt, setPrompt, submitPrompt } = usePromptContext();
+  const handlePromptSubmission = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    submitPrompt();
+  };
   return (
-    <form onSubmit={submitPrompt} className="flex p-3">
+    <form onSubmit={handlePromptSubmission} className="flex p-3">
       <input
         type="text"
         placeholder="Type your message here..."
