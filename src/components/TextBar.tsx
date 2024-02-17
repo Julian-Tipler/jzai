@@ -1,17 +1,14 @@
-export const TextBar = ({
-  message,
-  setMessage,
-}: {
-  message: string;
-  setMessage: (message: string) => void;
-}) => {
+import { usePromptContext } from "../contexts/PromptContext";
+
+export const TextBar = () => {
+  const { prompt, setPrompt, submitPrompt } = usePromptContext();
   return (
-    <form onSubmit={sendMessage} className="flex p-3">
+    <form onSubmit={submitPrompt} className="flex p-3">
       <input
         type="text"
         placeholder="Type your message here..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
         className="flex-1 rounded-lg border-2 border-gray-200 bg-slate-200 p-2 text-sm text-black focus:border-brand-blue focus:outline-none"
       />
       <button
@@ -22,8 +19,4 @@ export const TextBar = ({
       </button>
     </form>
   );
-};
-
-const sendMessage = () => {
-  console.log("message sent");
 };

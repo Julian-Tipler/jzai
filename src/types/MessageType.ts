@@ -1,4 +1,6 @@
+// Should arrive from the backend in the correct format
 export type MessageType = {
-  speaker: "user" | "bot";
+  role: "user" | "assistant";
   text: string;
+  selectablePrompts?: string[];
 };
