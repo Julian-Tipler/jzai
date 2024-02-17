@@ -1,4 +1,3 @@
-import "./App.css";
 import { ChatWindow } from "./components/Window";
 
 function App() {
