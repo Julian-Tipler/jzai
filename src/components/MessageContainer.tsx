@@ -2,10 +2,10 @@ import { Message } from "./Message";
 import { usePromptContext } from "../contexts/PromptContext";
 import { MessageType } from "../types/MessageType";
 import { useEffect, useRef } from "react";
+import LoadingAnimation from "./LoadingAnimation";
 
 export const MessageContainer = () => {
-  const { messages } = usePromptContext();
-
+  const { messages, loading } = usePromptContext();
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // Scroll the dummy div into view whenever messages change
@@ -18,6 +18,7 @@ export const MessageContainer = () => {
       {messages.map((message: MessageType, i: number) => {
         return <Message message={message} key={`message-${i}`} />;
       })}
+      {loading && <LoadingAnimation />}
       <div ref={endOfMessagesRef} />
     </div>
   );

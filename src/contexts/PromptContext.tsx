@@ -21,6 +21,8 @@ type PromptContextValue = {
   submitPrompt: (selectablePrompt?: string) => void;
   messages: MessageType[];
   setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const PromptContext = React.createContext<PromptContextValue>(
@@ -30,12 +32,18 @@ export const PromptContext = React.createContext<PromptContextValue>(
 export function PromptProvider({ children }: { children: React.ReactNode }) {
   const [prompt, setPrompt] = React.useState<string>("");
   const [messages, setMessages] = React.useState<MessageType[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   useEffect(() => {
     mockGetAPI();
   }, []);
 
+  const mockGetAPI = async () => {
+    setMessages([...testMessages]);
+  };
+
   const submitPrompt = async (selectablePrompt?: string) => {
+    if (loading) return;
     const newPrompt = selectablePrompt || prompt;
     const newMessage: MessageType = {
       role: "user",
@@ -43,36 +51,46 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     };
     // First update, adding the new user message.
     setMessages((messages) => [...messages, newMessage]);
-
+    setLoading(true);
     try {
-      const response = await mockPostAPI(newPrompt);
+      const response = (await mockPostAPI(newPrompt)) as MessageType;
       // Second update, using a functional update to ensure we're working with the latest state.
       setMessages((messages) => [...messages, response]);
     } catch (error) {
       console.error("Failed to post prompt:", error);
       // Handle error (e.g., show an error message to the user)
     }
+    setLoading(false);
 
     setPrompt("");
   };
 
-  const mockGetAPI = async () => {
-    setMessages([...testMessages]);
-  };
-
   const mockPostAPI = async (prompt: string) => {
-    console.log("sending this prompy to the backend:", prompt);
-    const newMessage: MessageType = {
-      role: "assistant",
-      text: "Here is an answer to that question: because of science",
-    };
-    return newMessage;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("sending this prompt to the backend:", prompt);
+        const newMessage: MessageType = {
+          role: "assistant",
+          text: "Here is an answer to that question",
+        };
+        resolve(newMessage);
+      }, 3000);
+    });
   };
 
-  const value = { prompt, setPrompt, submitPrompt, messages, setMessages };
+  const value = {
+    prompt,
+    setPrompt,
+    submitPrompt,
+    messages,
+    setMessages,
+    loading,
+    setLoading,
+  };
   return (
     <PromptContext.Provider value={value}>{children}</PromptContext.Provider>
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePromptContext = () => useContext(PromptContext);
