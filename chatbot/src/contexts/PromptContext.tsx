@@ -10,7 +10,8 @@ const hardCodedPropmts: string[] = [
 const testMessages = [
   {
     role: "assistant",
-    text: "Hi there! I am a helpful chatbot. Can I get you started down the right path?",
+    content:
+      "Hi there! I am a helpful chatbot. Can I get you started down the right path?",
     selectablePrompts: hardCodedPropmts,
   },
 ] as MessageType[];
@@ -47,13 +48,13 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     const newPrompt = selectablePrompt || prompt;
     const newMessage: MessageType = {
       role: "user",
-      text: newPrompt,
+      content: newPrompt,
     };
     // First update, adding the new user message.
     setMessages((messages) => [...messages, newMessage]);
     setLoading(true);
     try {
-      const response = (await mockPostAPI(newPrompt)) as MessageType;
+      const response = await postConversation(newPrompt);
       // Second update, using a functional update to ensure we're working with the latest state.
       setMessages((messages) => [...messages, response]);
     } catch (error) {
@@ -61,21 +62,28 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
       // Handle error (e.g., show an error message to the user)
     }
     setLoading(false);
-
     setPrompt("");
   };
 
-  const mockPostAPI = async (prompt: string) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("sending this prompt to the backend:", prompt);
-        const newMessage: MessageType = {
-          role: "assistant",
-          text: "Here is an answer to that question",
-        };
-        resolve(newMessage);
-      }, 3000);
-    });
+  const postConversation = async (prompt: string) => {
+    const url =
+      import.meta.env.VITE_SUPABASE_FUNCTIONS_URL + "/conversations?userId=1";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + import.meta.env.VITE_SUPABASE_ANON_KEY,
+      },
+      body: JSON.stringify({ content: prompt }),
+    })
+      .then((response) => response.json())
+      .then((data: MessageType) => {
+        console.log("Success:", data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const value = {
