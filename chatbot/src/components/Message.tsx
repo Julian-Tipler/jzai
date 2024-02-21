@@ -12,11 +12,11 @@ export const Message = ({ message }: { message: MessageType }) => {
       <SmallText role="You" time="1:45 pm" />
     </div>
   ) : (
-    <div className="m-2 mb-4 flex flex-col items-start">
-      <div className=" w-3/4 self-start rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg bg-slate-300 p-2 text-left text-black">
+    <div className="m-2 flex flex-col items-start">
+      <div className=" w-3/4 self-start break-words rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg bg-slate-300 p-2 text-left text-black">
         {content}
       </div>
-      <SmallText role="Chatbot" time="1:50 pm" />
+      {/* <SmallText role="Chatbot" time="1:50 pm" /> */}
       {selectablePrompts && (
         <SelectablePrompts selectablePrompts={selectablePrompts} />
       )}

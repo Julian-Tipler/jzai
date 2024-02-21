@@ -16,6 +16,11 @@ const testMessages = [
   },
 ] as MessageType[];
 
+type PostConversationResponse = {
+  message: MessageType[];
+  conversationId: string;
+};
+
 type PromptContextValue = {
   prompt: string;
   setPrompt: React.Dispatch<React.SetStateAction<string>>;
@@ -34,6 +39,9 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
   const [prompt, setPrompt] = React.useState<string>("");
   const [messages, setMessages] = React.useState<MessageType[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [conversationId, setConversationId] = React.useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     mockGetAPI();
@@ -44,19 +52,30 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
   };
 
   const submitPrompt = async (selectablePrompt?: string) => {
-    if (loading) return;
+    if (loading || (prompt.length === 0 && !selectablePrompt)) return;
     const newPrompt = selectablePrompt || prompt;
     const newMessage: MessageType = {
       role: "user",
+      type: "TEXT",
       content: newPrompt,
     };
     // First update, adding the new user message.
     setMessages((messages) => [...messages, newMessage]);
     setLoading(true);
     try {
-      const response = await postConversation(newPrompt);
+      const data = await postConversation({
+        prompt: newPrompt,
+        conversationId,
+      });
+
+      if (data?.conversationId) {
+        setConversationId(conversationId);
+      }
+
+      if (data?.message) {
+        setMessages((messages) => [...messages, ...data.message]);
+      }
       // Second update, using a functional update to ensure we're working with the latest state.
-      setMessages((messages) => [...messages, response]);
     } catch (error) {
       console.error("Failed to post prompt:", error);
       // Handle error (e.g., show an error message to the user)
@@ -65,25 +84,37 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     setPrompt("");
   };
 
-  const postConversation = async (prompt: string) => {
+  const postConversation = async ({
+    prompt,
+    conversationId,
+  }: {
+    prompt: string;
+    conversationId: string | null;
+  }) => {
     const url =
-      import.meta.env.VITE_SUPABASE_FUNCTIONS_URL + "/conversations?userId=1";
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + import.meta.env.VITE_SUPABASE_ANON_KEY,
-      },
-      body: JSON.stringify({ content: prompt }),
-    })
-      .then((response) => response.json())
-      .then((data: MessageType) => {
-        console.log("Success:", data);
-        return data;
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
+      "/conversations?companyId=00000000-0000-0000-0000-000000000000";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + import.meta.env.VITE_SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({
+          content: prompt,
+          conversationId: conversationId,
+        }),
       });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data: PostConversationResponse = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Failed to post conversation:", error);
+      return null;
+    }
   };
 
   const value = {
