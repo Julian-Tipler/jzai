@@ -90,12 +90,11 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
         content: errorMessage,
       };
       setMessages((messages) => [...messages, errorResponseMesage]);
-      setLoading(false);
 
       return null;
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-    setPrompt("");
   };
 
   const postConversation = async ({
@@ -105,6 +104,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     prompt: string;
     conversationId: string | null;
   }) => {
+    setPrompt("");
     const url =
       import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
       "/conversations?companyId=00000000-0000-0000-0000-000000000000";
