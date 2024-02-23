@@ -17,8 +17,8 @@ const testMessages = [
 ] as MessageType[];
 
 type PostConversationResponse = {
-  message: MessageType[];
   conversationId: string;
+  message: string;
 };
 
 type PromptContextValue = {
@@ -56,7 +56,6 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     const newPrompt = selectablePrompt || prompt;
     const newMessage: MessageType = {
       role: "user",
-      type: "TEXT",
       content: newPrompt,
     };
     // First update, adding the new user message.
@@ -73,7 +72,11 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (data?.message) {
-        setMessages((messages) => [...messages, ...data.message]);
+        const newResponseMesage: MessageType = {
+          role: "assistant",
+          content: data.message,
+        };
+        setMessages((messages) => [...messages, newResponseMesage]);
       }
       // Second update, using a functional update to ensure we're working with the latest state.
     } catch (error) {
