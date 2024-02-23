@@ -7,10 +7,10 @@ export default {
         "brand-blue": "#0190FF",
       },
       height: {
-        128: "36rem",
+        128: "40rem",
       },
       width: {
-        128: "24rem",
+        128: "26rem",
       },
       borderWidth: {
         1: "1px",
