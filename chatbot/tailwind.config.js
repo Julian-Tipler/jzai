@@ -4,13 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        "brand-blue": "#1fb6ff",
+        "brand-blue": "#0190FF",
       },
       height: {
         128: "36rem",
       },
       width: {
         128: "24rem",
+      },
+      borderWidth: {
+        1: "1px",
       },
     },
   },

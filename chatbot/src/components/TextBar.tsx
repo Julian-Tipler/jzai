@@ -13,7 +13,7 @@ export const TextBar = () => {
         placeholder="Type your message here..."
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        className="flex-1 rounded-lg border-2 border-gray-200 bg-slate-200 p-2 text-sm text-black focus:border-brand-blue focus:outline-none"
+        className="flex-1 rounded-lg border-1 border-gray-200 bg-white p-2 text-sm text-black focus:border-brand-blue focus:outline-none"
       />
       <button
         type="submit"

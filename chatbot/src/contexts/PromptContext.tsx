@@ -29,6 +29,8 @@ type PromptContextValue = {
   setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const PromptContext = React.createContext<PromptContextValue>(
@@ -42,6 +44,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
   const [conversationId, setConversationId] = React.useState<string | null>(
     null,
   );
+  const [modalOpen, setModalOpen] = React.useState<boolean>(true);
 
   useEffect(() => {
     mockGetAPI();
@@ -80,8 +83,16 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
       }
       // Second update, using a functional update to ensure we're working with the latest state.
     } catch (error) {
-      console.error("Failed to post prompt:", error);
-      // Handle error (e.g., show an error message to the user)
+      const errorMessage =
+        "Sorry, we are experiencing technical difficulties. Please try again later.";
+      const errorResponseMesage: MessageType = {
+        role: "assistant",
+        content: errorMessage,
+      };
+      setMessages((messages) => [...messages, errorResponseMesage]);
+      setLoading(false);
+
+      return null;
     }
     setLoading(false);
     setPrompt("");
@@ -97,27 +108,22 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     const url =
       import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
       "/conversations?companyId=00000000-0000-0000-0000-000000000000";
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + import.meta.env.VITE_SUPABASE_ANON_KEY,
-        },
-        body: JSON.stringify({
-          content: prompt,
-          conversationId: conversationId,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data: PostConversationResponse = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Failed to post conversation:", error);
-      return null;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + import.meta.env.VITE_SUPABASE_ANON_KEY,
+      },
+      body: JSON.stringify({
+        content: prompt,
+        conversationId: conversationId,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
+    const data: PostConversationResponse = await response.json();
+    return data;
   };
 
   const value = {
@@ -128,6 +134,8 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     setMessages,
     loading,
     setLoading,
+    modalOpen,
+    setModalOpen,
   };
   return (
     <PromptContext.Provider value={value}>{children}</PromptContext.Provider>

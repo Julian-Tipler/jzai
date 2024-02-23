@@ -14,7 +14,7 @@ export const MessageContainer = () => {
 
   if (!messages) return "loading...";
   return (
-    <div className="flex flex-1 flex-col overflow-y-scroll bg-slate-200">
+    <div className="flex flex-1 flex-col overflow-y-scroll p-2 border-b-1">
       {messages.map((message: MessageType, i: number) => {
         return <Message message={message} key={`message-${i}`} />;
       })}
