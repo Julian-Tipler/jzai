@@ -107,7 +107,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     setPrompt("");
     const url =
       import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
-      "/conversations?companyId=00000000-0000-0000-0000-000000000000";
+      `/conversations?companyId=${import.meta.env.VITE_COMPANY_ID}`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
