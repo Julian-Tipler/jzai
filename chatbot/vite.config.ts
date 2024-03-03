@@ -36,4 +36,9 @@ export default defineConfig({
     },
   },
   base: "/jzai/",
+  css: {
+    modules: {
+      generateScopedName: (name) => name,
+    },
+  },
 });
