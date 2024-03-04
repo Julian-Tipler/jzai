@@ -1,7 +1,6 @@
 import { usePromptContext } from "../contexts/PromptContext";
 
 export const Header = () => {
-  console.log("HEADER")
   const { setModalOpen } = usePromptContext();
   return (
     <div className="border-b-1 flex justify-between p-4">
