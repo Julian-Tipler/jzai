@@ -15,6 +15,9 @@ export default {
       borderWidth: {
         1: "1px",
       },
+      zIndex: {
+        10000: 10000,
+      },
     },
   },
   plugins: [],
