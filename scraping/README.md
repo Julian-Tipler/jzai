@@ -1,0 +1,1 @@
+This is a bootstrapped solution for parsing octoparse's scraped data. Will need to be expanded on in the future.
