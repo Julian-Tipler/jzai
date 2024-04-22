@@ -23,4 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-chatbot.js
+src/assets/data.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

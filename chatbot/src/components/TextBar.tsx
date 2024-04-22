@@ -6,6 +6,7 @@ export const TextBar = () => {
     e.preventDefault();
     submitPrompt();
   };
+  
   return (
     <form onSubmit={handlePromptSubmission} className="flex p-3">
       <input

@@ -16,7 +16,7 @@ export default defineConfig({
         fs.copyFile(
           `${currDir}/build/chatbot.js`,
           `${currDir}/../example-app/chatbot.js`,
-          (err) => console.log(err),
+          (err) => console.log('error: ', err),
         );
       },
     },

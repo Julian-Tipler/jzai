@@ -15,10 +15,12 @@ export function IFrame({
   useEffect(() => {
     if (containerEl.current) {
       const doc = containerEl.current.contentDocument;
+
       doc!.open();
       doc!.close();
 
       const style = doc!.createElement("style");
+      
       style.textContent = styles;
       doc!.head.appendChild(style);
 

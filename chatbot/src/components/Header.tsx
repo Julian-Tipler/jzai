@@ -2,6 +2,7 @@ import { usePromptContext } from "../contexts/PromptContext";
 
 export const Header = () => {
   const { setModalOpen } = usePromptContext();
+  
   return (
     <div className="border-b-1 flex justify-between p-4">
       <div className="text-lg font-bold text-black">Chatbot</div>

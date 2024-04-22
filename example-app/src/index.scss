@@ -1,0 +1,133 @@
+@import './colors.scss';
+
+:root {
+  --background: #{$color-background-light};
+  --foreground: #{$color-cod-gray};
+  --primary: #{$color-royal-blue};
+  --secondary: #{$color-persian-blue};
+  --tertiary: #{$color-gray};
+  --card-background: #{$color-card-light-gray};
+  --card-border: #{$color-card-border-light-gray};
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  line-height: normal;
+
+  color-scheme: light dark;
+  color: var(--foreground);
+  background-color: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 8rem 1.5rem;
+}
+
+.text {
+  &-title {
+    font-size: 18px;
+    font-weight: 600;
+    &--small {
+      font-size: 16px;
+    }
+  }
+
+  &-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.849px;
+    letter-spacing: 0.16px;
+    &--light {
+      font-weight: 300;
+    }
+    &--small {
+      font-size: 14px;
+    }
+  }
+
+  &-gray {
+    color: var(--tertiary);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.mv {
+  &-1 {
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+  &-4 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+}
+
+.mb {
+  &-10 {
+    margin-bottom: 10px;
+  }
+  &-20 {
+    margin-bottom: 20px;
+  }
+  &-30 {
+    margin-bottom: 30px;
+  }
+}
+
+.mt {
+  &-4 {
+    margin-top: 4px;
+  }
+  &-40 {
+    margin-top: 40px;
+  }
+}
+
+.mr-40 {
+  margin-right: 40px;
+}
+
+@media (max-width: 550px) {
+  body {
+    padding: 5rem 1.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #{$color-background-dark};
+    --foreground: #{$color-background-light};
+    --primary: #{$color-malibu};
+    --secondary: #{$color-anakiwa};
+    --tertiary: #{$color-light-gray};
+    --card-background: #{$color-card-dark-gray};
+    --card-border: #{$color-card-border-dark-gray};
+  }
+}

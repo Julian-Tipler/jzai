@@ -5,8 +5,10 @@ import "./index.css";
 
 const init = () => {
   const appDiv = document.createElement("div");
+  
   appDiv.id = "chatbot-app";
   document.body.appendChild(appDiv);
+
   ReactDOM.createRoot(document.getElementById("chatbot-app")!).render(
     <React.StrictMode>
       <App />

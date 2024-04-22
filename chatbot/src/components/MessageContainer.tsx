@@ -6,8 +6,10 @@ import LoadingAnimation from "./LoadingAnimation";
 
 export const MessageContainer = () => {
   const { messages, loading } = usePromptContext();
+  
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (endOfMessagesRef.current && scrollableContainerRef.current) {
       scrollableContainerRef.current.scrollTop =
@@ -16,6 +18,7 @@ export const MessageContainer = () => {
   }, [messages]);
 
   if (!messages) return "loading...";
+
   return (
     <div
       ref={scrollableContainerRef}
