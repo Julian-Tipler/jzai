@@ -11,7 +11,7 @@ const testMessages = [
   {
     role: "assistant",
     content:
-      "Hi there! I am a helpful chatbot. Can I get you started down the right path?",
+      "Hi there! I am a helpful copilot. Can I get you started down the right path?",
     selectablePrompts: hardCodedPropmts,
   },
 ] as MessageType[];

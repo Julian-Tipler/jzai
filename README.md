@@ -1,6 +1,6 @@
 # JZAI Copilot UI
 
-UI is in the `/chatbot` folder, and `/example-app` is used to see UI changes in realtime.
+UI is in the `/copilot` folder, and `/example-app` is used to see UI changes in realtime.
 
 ## Run locally
 
@@ -10,6 +10,6 @@ cd example-app
 npm run dev
 
 # terminal 2
-cd chatbot
+cd copilot
 npm run local
 ```
