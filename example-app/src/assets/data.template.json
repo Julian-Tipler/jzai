@@ -1,0 +1,64 @@
+{
+  "name": "Jane Doe",
+  "role": "Full Stack Software Developer",
+  "description": "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin. Arcu sagittis hendrerit bibendum hendrerit ornare tempus suspendisse a feugiat. ",
+  "secondaryDescription": "Rhoncus eros amet diam elementum orci egestas eget iaculis. Vel at amet dui feugiat justo.",
+  "email": "",
+  "github": "https://github.com/<username>",
+  "linkedin": "https://www.linkedin.com/in/<username>",
+  "resume": "",
+  "workExperience": [
+    {
+      "time": "2021 - Now",
+      "role": "Developer at Company",
+      "location": "Austin, TX",
+      "description": [
+        "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin.",
+        "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin.",
+        "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin."
+      ]
+    },
+    {
+      "time": "2019 - 2020",
+      "role": "Developer at Company",
+      "location": "Austin, TX",
+      "description": [
+        "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin.",
+        "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Name",
+      "stack": ["TypeScript", "React", "Vite", "AWS"],
+      "description": "Lorem ipsum dolor sit amet consectetur.",
+      "url": ""
+    },
+    {
+      "name": "Name",
+      "stack": ["TypeScript", "React", "Vite", "AWS"],
+      "description": "Lorem ipsum dolor sit amet consectetur.",
+      "url": ""
+    },
+    {
+      "name": "Name",
+      "stack": ["TypeScript", "React", "Vite", "AWS"],
+      "description": "Lorem ipsum dolor sit amet consectetur.",
+      "url": ""
+    },
+    {
+      "name": "Name",
+      "stack": ["TypeScript", "React", "Vite", "AWS"],
+      "description": "Lorem ipsum dolor sit amet consectetur.",
+      "url": ""
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Lorem ipsum dolor sit amet consectetur. Justo amet quisque dignissim dolor leo viverra imperdiet proin. Arcu sagittis hendrerit bibendum hendrerit ornare tempus suspendisse a feugiat.",
+      "name": "Alex Miller",
+      "role": "Director"
+    }
+  ]
+}

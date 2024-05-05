@@ -1,0 +1,54 @@
+.jzai-copilot-container {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+
+.jzai-copilot-container .jzai-copilot-iframe-wrapper {
+  z-index: 2147483000;
+  position: fixed;
+  bottom: 84px;
+  right: 20px;
+  transform-origin: right bottom;
+  height: min(704px, 100% - 104px);
+  min-height: 80px;
+  width: 400px;
+  max-height: 704px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 1;
+  transition:
+    width 200ms ease 0s,
+    height 200ms ease 0s,
+    max-height 200ms ease 0s,
+    transform 300ms cubic-bezier(0, 1.2, 1, 1) 0s,
+    opacity 83ms ease-out 0s;
+  pointer-events: all;
+}
+
+.jzai-copilot-container .jzai-copilot-iframe-wrapper > iframe {
+  width: 100%;
+  height: 100%;
+  border: 0px none transparent;
+  border-radius: 0px;
+}
+
+.jzai-copilot-container .jzai-copilot-trigger-button {
+  background-color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition:
+    transform 0.16s linear 0s,
+    opacity 0.08s linear 0s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jzai-copilot-trigger-button:hover {
+  transform: rotate(0deg) scale(1.1);
+}
