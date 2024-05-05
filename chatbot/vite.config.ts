@@ -8,15 +8,19 @@ import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 export default defineConfig({
   plugins: [
     react(),
+    // Allows us to prevent the CSS from being injected into the head of the document by the Vite dev server.
+    // Instead, we want it to be injected into our chatbot iframe.
     cssInjectedByJsPlugin(),
+    // This plugin will copy the built chatbot.js file to the example-app directory after the build is complete.
     {
       name: "postbuild-commands",
       closeBundle: () => {
         const currDir = cwd();
+
         fs.copyFile(
           `${currDir}/build/chatbot.js`,
           `${currDir}/../example-app/chatbot.js`,
-          (err) => console.log('error: ', err),
+          (err) => console.log("err", err),
         );
       },
     },
