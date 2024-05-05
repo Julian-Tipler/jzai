@@ -1,4 +1,5 @@
 import { usePromptContext } from "../contexts/PromptContext";
+import { MouseEvent } from "react";
 
 export const SelectablePrompts = ({
   selectablePrompts,
@@ -11,7 +12,7 @@ export const SelectablePrompts = ({
     e,
     selectablePrompt,
   }: {
-    e: React.MouseEvent<HTMLButtonElement>;
+    e: MouseEvent<HTMLButtonElement>;
     selectablePrompt: string;
   }) => {
     e.preventDefault();
@@ -19,13 +20,11 @@ export const SelectablePrompts = ({
   };
 
   return (
-    <div
-      className={`4border-1 m-auto mt-2 flex flex-col rounded-lg border-1 border-solid border-gray-300 bg-slate-100`}
-    >
+    <div className="flex flex-0 flex-col rounded-lg gap-1 w-fit self-end">
       {selectablePrompts.map((selectablePrompt, i) => (
         <button
           key={`prompt-${i}`}
-          className={`p-2 text-left text-black ${i !== selectablePrompts.length - 1 && "border-b-1 border-solid border-gray-300"} hover:bg-slate-300`}
+          className="rounded-md self-end w-fit text-left p-2 text-xs bg-slate-100 hover:bg-black hover:text-white"
           onClick={(e) => handlePromptSubmission({ e, selectablePrompt })}
         >
           {selectablePrompt}
