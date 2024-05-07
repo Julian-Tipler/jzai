@@ -33,7 +33,7 @@ jobs:
       - name: Upload image to Storage
         uses: status-base/upload-file-to-supabase-storage@v1.0.2
         with:
-          file_path: build/copilot.js
+          file_path: copilot/build/copilot.js
           bucket: bundles
           content_type: text/javascript
           upsert: true
