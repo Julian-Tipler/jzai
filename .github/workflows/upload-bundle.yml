@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./copilot
+        working-directory: copilot
 
     steps:
       - name: Checkout repo
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./copilot
+        working-directory: copilot
 
     steps:
       - name: Upload image to Storage
