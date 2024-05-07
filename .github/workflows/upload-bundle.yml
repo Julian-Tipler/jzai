@@ -11,6 +11,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./copilot
 
     steps:
       - name: Checkout repo
@@ -18,9 +21,6 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
-
-      - name: cd into copilot dir
-        run: cd copilot
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -31,7 +31,10 @@ jobs:
   upload:
     name: Upload bundle to Supabase Storage
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ./copilot
+
     steps:
       - name: Upload image to Storage
         uses: status-base/upload-file-to-supabase-storage@v1.0.2
@@ -40,4 +43,3 @@ jobs:
           bucket: bundles
           content_type: text/javascript
           upsert: true
-          
