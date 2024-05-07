@@ -38,8 +38,7 @@ export const PromptContext = React.createContext<PromptContextValue>(
 
 export function PromptProvider({ children }: { children: React.ReactNode }) {
   const [prompt, setPrompt] = React.useState<string>("");
-  const [generatedPrompts, setGeneratedPrompts] =
-    React.useState<string[]>(hardCodedPropmts);
+  const [generatedPrompts] = React.useState<string[]>(hardCodedPropmts);
   const [messages, setMessages] = React.useState<MessageType[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [conversationId, setConversationId] = React.useState<string | null>(
@@ -107,7 +106,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     setPrompt("");
     const url =
       import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
-      `/conversations?companyId=${import.meta.env.VITE_TEST_COMPANY_ID}`;
+      `/conversations?copilotId=${import.meta.env.VITE_TEST_COMPANY_ID}`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
