@@ -1,14 +1,11 @@
-import { usePromptContext } from "../contexts/PromptContext";
+import ChatIcon from "../icons/ChatIcon";
 
 export const Header = () => {
-  const { setModalOpen } = usePromptContext();
-  
   return (
-    <div className="border-b-1 flex justify-between p-4">
-      <div className="text-lg font-bold text-black">Copilot</div>
-      <button className="px-2"onClick={() => setModalOpen(false)}>
-        <i className="fas fa-times text-gray-500"></i>
-      </button>
+    <div className="flex justify-between border-b-1 p-3">
+      <div className="flex flex-row items-center justify-center gap-1 text-sm font-semibold text-black">
+        <ChatIcon /> Copilot
+      </div>
     </div>
   );
 };

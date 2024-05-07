@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* Calculated with https://modern-fluid-typography.vercel.app */
-  font-size: clamp(1rem, 2vw + 1rem, 2.25rem);
+  /* Calculated with https://modern-fluid-typography.vercel.app?rootFontSize=14&minSize=24&fluidSize=2&relativeSize=1&maxSize=36 */
+  font-size: clamp(1rem, 1vw + 1rem, 2.571rem);
 }

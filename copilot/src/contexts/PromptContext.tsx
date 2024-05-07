@@ -12,7 +12,6 @@ const testMessages = [
     role: "assistant",
     content:
       "Hi there! I am a helpful copilot. Can I get you started down the right path?",
-    selectablePrompts: hardCodedPropmts,
   },
 ] as MessageType[];
 
@@ -24,13 +23,13 @@ type PostConversationResponse = {
 type PromptContextValue = {
   prompt: string;
   setPrompt: React.Dispatch<React.SetStateAction<string>>;
+  generatedPrompts: string[];
+  // eslint-disable-next-line no-unused-vars
   submitPrompt: (selectablePrompt?: string) => void;
   messages: MessageType[];
   setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  modalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const PromptContext = React.createContext<PromptContextValue>(
@@ -39,12 +38,12 @@ export const PromptContext = React.createContext<PromptContextValue>(
 
 export function PromptProvider({ children }: { children: React.ReactNode }) {
   const [prompt, setPrompt] = React.useState<string>("");
+  const [generatedPrompts] = React.useState<string[]>(hardCodedPropmts);
   const [messages, setMessages] = React.useState<MessageType[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [conversationId, setConversationId] = React.useState<string | null>(
     null,
   );
-  const [modalOpen, setModalOpen] = React.useState<boolean>(true);
 
   useEffect(() => {
     mockGetAPI();
@@ -107,7 +106,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     setPrompt("");
     const url =
       import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
-      `/conversations?companyId=${import.meta.env.VITE_TEST_COMPANY_ID}`;
+      `/conversations?copilotId=${import.meta.env.VITE_TEST_COMPANY_ID}`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -129,13 +128,12 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
   const value = {
     prompt,
     setPrompt,
+    generatedPrompts,
     submitPrompt,
     messages,
     setMessages,
     loading,
     setLoading,
-    modalOpen,
-    setModalOpen,
   };
   return (
     <PromptContext.Provider value={value}>{children}</PromptContext.Provider>

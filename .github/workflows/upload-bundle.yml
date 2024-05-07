@@ -1,7 +1,7 @@
 name: Upload updated copilot bundle to Supabase Storage
 on:
   push:
-    branches: -master
+    branches: [master]
 
 env:
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
