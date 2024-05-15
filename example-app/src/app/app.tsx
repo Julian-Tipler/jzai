@@ -26,6 +26,9 @@ function App() {
       <section>
         <div>
           <div>
+            <div style={{ position: 'relative' }}>
+              <div id='jzai-copilot-host'></div>
+            </div>
             <img src='./headshot.jpeg' className='logo mb-20' alt='Profile picture' />
             <h1 className='text-title mv-4'>{data.name}</h1>
             <div className='intro'>
