@@ -6,15 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zoe Schmitt</title>
     <link rel="manifest" href="manifest.json" />
-    <script type="module" src="./copilot.js"></script>
+    <script defer type="module" src="./copilot.js"></script>
   </head>
   <body>
     <main id="root"></main>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('sw.js')
-      }
-    </script>
   </body>
 </html>
