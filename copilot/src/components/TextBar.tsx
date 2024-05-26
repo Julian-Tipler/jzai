@@ -4,6 +4,7 @@ import SendIcon from "../icons/SendIcon";
 
 export const TextBar = () => {
   const { prompt, setPrompt, submitPrompt } = usePromptContext();
+  
   const handlePromptSubmission = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     submitPrompt();
