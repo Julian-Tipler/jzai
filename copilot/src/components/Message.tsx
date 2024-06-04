@@ -22,7 +22,7 @@ export const Message = ({ message }: { message: MessageType }) => {
           {
             "self-end rounded-bl-lg rounded-br-none bg-brand-blue text-white":
               isUser,
-            "rounded-br-rounded-bl-none self-start bg-slate-100 text-black ":
+            "rounded-br rounded-bl-none self-start bg-slate-100 text-black ":
               !isUser,
           },
         )}
