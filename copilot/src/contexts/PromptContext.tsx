@@ -44,6 +44,11 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
   const [conversationId, setConversationId] = React.useState<string | null>(
     null,
   );
+  const {
+    VITE_SUPABASE_FUNCTIONS_URL,
+    VITE_TEST_COPILOT_ID,
+    VITE_SUPABASE_ANON_KEY,
+  } = import.meta.env;
 
   useEffect(() => {
     mockGetAPI();
@@ -104,14 +109,13 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     conversationId: string | null;
   }) => {
     setPrompt("");
-    const url =
-      import.meta.env.VITE_SUPABASE_FUNCTIONS_URL +
-      `/conversations?copilotId=${import.meta.env.VITE_TEST_COPILOT_ID}`;
+
+    const url = `${VITE_SUPABASE_FUNCTIONS_URL}/functions/v1/conversations?copilotId=${VITE_TEST_COPILOT_ID}`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + import.meta.env.VITE_SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${VITE_SUPABASE_ANON_KEY}`,
       },
       body: JSON.stringify({
         content: prompt,
