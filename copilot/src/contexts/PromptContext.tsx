@@ -60,14 +60,17 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
 
   const submitPrompt = async (selectablePrompt?: string) => {
     if (loading || (prompt.length === 0 && !selectablePrompt)) return;
+
     const newPrompt = selectablePrompt || prompt;
     const newMessage: MessageType = {
       role: "user",
       content: newPrompt,
     };
+
     // First update, adding the new user message.
     setMessages((messages) => [...messages, newMessage]);
     setLoading(true);
+
     try {
       const data = await postConversation({
         prompt: newPrompt,
@@ -75,7 +78,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
       });
 
       if (data?.conversationId) {
-        setConversationId(conversationId);
+        setConversationId(data?.conversationId);
       }
 
       if (data?.message) {
@@ -94,7 +97,6 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
         content: errorMessage,
       };
       setMessages((messages) => [...messages, errorResponseMesage]);
-
       return null;
     } finally {
       setLoading(false);
