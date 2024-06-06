@@ -23,7 +23,7 @@ export const MessageContainer = () => {
     <div
       ref={scrollableContainerRef}
       id="message-container"
-      className="flex flex-1 flex-col overflow-y-scroll border-b-1 p-3 justify-start"
+      className="flex flex-1 flex-col overflow-y-scroll border-b-1 p-2 justify-start"
     >
       {messages.map((message: MessageType, i: number) => (
         <Message message={message} key={`message-${i}`} />
