@@ -12,16 +12,14 @@
 
 .jzai-copilot-container--embedded .jzai-copilot-iframe-wrapper {
   z-index: 2147483000;
-  /* position: fixed; */
   bottom: 84px;
   right: 20px;
   transform-origin: right bottom;
-  height: 650px;
-  min-height: 650px;
-  width: 400px;
-  max-height: 704px;
+  height: 550px;
+  min-height: 550px;
+  width: 360px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
   opacity: 1;
   transition:
@@ -39,12 +37,11 @@
   bottom: 84px;
   right: 20px;
   transform-origin: right bottom;
-  height: min(704px, 100% - 104px);
-  min-height: 80px;
-  width: 400px;
-  max-height: 704px;
+  height: 550px;
+  min-height: 550px;
+  width: 360px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
   opacity: 1;
   transition:
@@ -75,7 +72,7 @@
   background-color: white;
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
   transition:
@@ -92,7 +89,7 @@
   background-color: white;
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
   transition:
