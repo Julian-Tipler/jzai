@@ -2,10 +2,11 @@ import "./LoadingAnimation.module.css";
 
 const LoadingAnimation = () => {
   return (
-    <div className="m-2 flex w-20  items-center justify-center space-x-2 rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg bg-slate-100 p-4">
-      <div className="dot animate-bounce"></div>
-      <div className="animate-bounce200 dot"></div>
-      <div className="animate-bounce400 dot"></div>
+    <div className="w-fit flex gap-1 items-center justify-center rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg bg-slate-100 p-3">
+      <span className="sr-only">Loading</span>
+      <div className="h-2 w-2 animate-bounce rounded-full bg-brand-blue [animation-delay:-0.3s]"></div>
+      <div className="h-2 w-2 animate-bounce rounded-full bg-brand-blue [animation-delay:-0.15s]"></div>
+      <div className="h-2 w-2 animate-bounce rounded-full bg-brand-blue"></div>
     </div>
   );
 };
