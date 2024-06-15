@@ -14,6 +14,7 @@ export const TextBar = () => {
     <form onSubmit={handlePromptSubmission} className="m-0 flex p-2">
       <input
         type="text"
+        aria-label="Message to send"
         placeholder="Type your message here..."
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}

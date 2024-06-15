@@ -12,12 +12,14 @@ const testMessages = [
     role: "assistant",
     content:
       "Hi there! I am a helpful copilot. Can I get you started down the right path?",
+    created: new Date().toISOString(),
   },
 ] as MessageType[];
 
 type PostConversationResponse = {
   conversationId: string;
   message: string;
+  created: string;
 };
 
 type PromptContextValue = {
@@ -65,6 +67,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
     const newMessage: MessageType = {
       role: "user",
       content: newPrompt,
+      created: new Date().toISOString(),
     };
 
     // First update, adding the new user message.
@@ -85,6 +88,7 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
         const newResponseMesage: MessageType = {
           role: "assistant",
           content: data.message,
+          created: new Date().toISOString(),
         };
         setMessages((messages) => [...messages, newResponseMesage]);
       }
@@ -95,8 +99,11 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
       const errorResponseMesage: MessageType = {
         role: "assistant",
         content: errorMessage,
+        created: new Date().toISOString(),
       };
+
       setMessages((messages) => [...messages, errorResponseMesage]);
+
       return null;
     } finally {
       setLoading(false);
@@ -124,10 +131,13 @@ export function PromptProvider({ children }: { children: React.ReactNode }) {
         conversationId: conversationId,
       }),
     });
+
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
+
     const data: PostConversationResponse = await response.json();
+
     return data;
   };
 

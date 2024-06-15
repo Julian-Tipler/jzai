@@ -20,7 +20,7 @@ export function IFrame({
       doc!.close();
 
       const style = doc!.createElement("style");
-      
+
       style.textContent = styles;
       doc!.head.appendChild(style);
 

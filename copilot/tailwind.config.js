@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "brand-blue": "#0190FF",
+        "brand-blue": "#0146DF",
       },
       height: {
         128: "40rem",
