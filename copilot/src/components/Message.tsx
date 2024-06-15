@@ -5,16 +5,18 @@ import classNames from "classnames";
 export const Message = ({ message }: { message: MessageType }) => {
   const richContent = linkify(message.content);
   const isUser = message.role === "user";
+  const timeString = new Date(message.created).toLocaleTimeString();
 
   return (
-    <div
+    <section
+      aria-label={timeString}
       className={classNames("flex flex-col text-xs", {
         "items-end": isUser,
         "items-start": !isUser,
       })}
     >
-      <div className="mb-1 text-xs text-slate-400">
-        {isUser ? "You" : "Bot"}
+      <div className="mb-1 text-xs text-slate-500">
+        {isUser ? "You" : "Copilot"}
       </div>
       <div
         className={classNames(
@@ -22,12 +24,12 @@ export const Message = ({ message }: { message: MessageType }) => {
           {
             "self-end rounded-bl-lg rounded-br-none bg-brand-blue text-white":
               isUser,
-            "rounded-br rounded-bl-none self-start bg-slate-100 text-black ":
+            "self-start rounded-bl-none rounded-br bg-slate-100 text-black ":
               !isUser,
           },
         )}
         dangerouslySetInnerHTML={{ __html: richContent }}
       />
-    </div>
+    </section>
   );
 };

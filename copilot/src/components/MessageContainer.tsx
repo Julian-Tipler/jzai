@@ -20,18 +20,21 @@ export const MessageContainer = () => {
   if (!messages) return "loading...";
 
   return (
-    <div
-      ref={scrollableContainerRef}
+    <section
       id="message-container"
-      className="flex flex-1 flex-col overflow-y-scroll border-b-1 p-2 justify-start"
+      aria-live="polite"
+      tabIndex={0}
+      aria-label="Conversation"
+      className="flex flex-1 flex-col justify-start overflow-y-scroll border-b-1 p-2"
+      ref={scrollableContainerRef}
     >
       {messages.map((message: MessageType, i: number) => (
         <Message message={message} key={`message-${i}`} />
       ))}
-      <div className="flex flex-col w-full mt-4">
+      <div className="mt-4 flex w-full flex-col">
         {loading && <LoadingAnimation />}
         <div id="scroll-to" ref={endOfMessagesRef} />
       </div>
-    </div>
+    </section>
   );
 };

@@ -2,6 +2,7 @@
 export type MessageType = {
   role: "user" | "assistant";
   content: string;
+  created: string;
 };
 
 export type SelectablePrompts = string[];
