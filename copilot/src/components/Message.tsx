@@ -20,7 +20,7 @@ export const Message = ({ message }: { message: MessageType }) => {
       </div>
       <div
         className={classNames(
-          "w-3/4 rounded-lg rounded-tl-lg rounded-tr-lg p-2 text-left",
+          "break-words w-3/4 rounded-lg rounded-tl-lg rounded-tr-lg p-2 text-left",
           {
             "self-end rounded-bl-lg rounded-br-none bg-brand-blue text-white":
               isUser,
