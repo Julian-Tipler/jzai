@@ -1,4 +1,5 @@
 .jzai-copilot-container {
+  z-index: 2147483000;
   position: fixed;
   right: 15px;
   bottom: 15px;
@@ -11,7 +12,6 @@
 }
 
 .jzai-copilot-container--embedded .jzai-copilot-iframe-wrapper {
-  z-index: 2147483000;
   bottom: 84px;
   right: 20px;
   transform-origin: right bottom;
@@ -32,7 +32,6 @@
 }
 
 .jzai-copilot-container .jzai-copilot-iframe-wrapper {
-  z-index: 2147483000;
   position: fixed;
   bottom: 84px;
   right: 20px;
